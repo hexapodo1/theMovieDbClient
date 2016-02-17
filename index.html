@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>The Movie Db Client</title>
+        <!-- Css imports -->
+        <link href="assets/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+        <link href="assets/jstree/themes/default/style.min.css" rel="stylesheet">
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/gritter/css/jquery.gritter.css" rel="stylesheet">
+        <link href="assets/css/agency.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+        <!-- js imports -->
+        <script src="assets/js/jquery.js"></script>
+        <script src="assets/jstree/jstree.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/jquery-ui/jquery-ui.min.js"></script>
+        <script src="assets/gritter/js/jquery.gritter.js"></script>
+        <script src="assets/jquery-validation/jquery.validate.js"></script>
+        <script src="assets/jquery-validation/additional-methods.js"></script>
+        <script src="assets/jquery-validation/messages_es.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Shortcut Icon -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+
+    <body ng-app id="page-top" class="index">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top navbar-shrink">
+            <div class="container">
+                <img src="assets/img/film-1.png" style="float: left; margin-left: 0px; margin-right: 5px;">
+                
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand page-scroll" href="#">The Movie Db Client</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li class="active">
+                            <a class="page-scroll" data-value="juan" href="#">
+                                Home
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+        <!-- Services Section -->
+        <section style="min-height: 400px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" id="contenido">
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer style="background-color: rgba(0,0,0, 0.02); border-top: #FEC503 2px solid;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="copyright">Copyright &copy; The Movie Db Client 2016</span>
+                    </div>
+                    <div class="col-md-4">
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <ul class="list-inline quicklinks">
+                            <li><a href="#">Privacy Policy</a>
+                            </li>
+                            <li><a href="#">Terms of Use</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Custom Theme JavaScript -->
+        <script>
+            function crearMensaje(tipo, contenido){
+                switch (parseInt(tipo)){
+                    case 0:
+                        $.gritter.add({
+                            title: 'Error',
+                            text: contenido,
+                            image: "assets/img/48_error.png",
+                        });
+                        break;
+                    case 1:
+                        $.gritter.add({
+                            title: 'Exitoso',
+                            text: contenido,
+                            image: "assets/img/48_ok.png",
+                        });
+                        break;
+                    case 2:
+                        $.gritter.add({
+                            title: 'Información importante!',
+                            text: contenido,
+                            image: "assets/img/48_info.png",
+                        });
+                        break;
+                    default:
+                        $.gritter.add({
+                            title: 'Aviso',
+                            text: 'Error desconocido.'
+                        });
+                }
+            }
+            
+            
+            $(document).ready(function(){
+
+                $("#bs-example-navbar-collapse-1 a").click(function(event){
+                    event.preventDefault();
+                    var opcion = $(this).data('value');
+                    var parametros = $(this).data('parametros');
+                    $(this).parent().parent().children().removeClass('active');
+                    $(this).parent().addClass('active');
+
+                    if($(this).data('submenu')){
+                        $(this).parent().parent().children().children().addClass('submenuok');
+                        $(this).removeClass('submenuok');
+                    }
+                });
+                
+                // Closes the Responsive Menu on Menu Item Click
+                $('.navbar-collapse ul li a').click(function() {
+                    $('.navbar-toggle:visible').click();
+                });
+                
+            });
+        </script>
+
+</body>
+
+</html>

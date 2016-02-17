@@ -1,0 +1,19 @@
+{
+  "author": {
+    "name": "Jordan Boesch, Jason Feriante"
+  },
+  "name": "gritter",
+  "main": [
+    "./js/jquery.gritter.min.js"
+  ],
+  "homepage": "https://github.com/jferiante/gritter",
+  "_release": "54a02b7329",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "54a02b73296705cb2f7edc479f6b4298e1921ac8"
+  },
+  "_source": "git://github.com/jferiante/gritter.git",
+  "_target": "master",
+  "_originalSource": "gritter"
+}
