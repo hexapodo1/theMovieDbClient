@@ -34,8 +34,9 @@ angular.module('miAp', ['ngRoute'])
 })
 .factory('parametros', function() {
     return { 
-        actorId: '',
-        movieId: ''
+        actorId: 6193,
+        movieId: 194,
+        search: 'theron'
     };
 })
 .controller("ajax", function($scope, $http) {
@@ -47,11 +48,11 @@ angular.module('miAp', ['ngRoute'])
                 });
     };
 })
-.controller("HomeController", function($scope, $http, api) {
+.controller("HomeController", function($scope, $http, api, parametros) {
     $http.get('http://api.themoviedb.org/3/configuration?api_key=' + api.key)
         .success(function(data){
             $scope.config=data;
-                $http.get('http://api.themoviedb.org/3/search/person?query=depp&api_key=' + api.key)
+                $http.get('http://api.themoviedb.org/3/search/person?query=' + parametros['search'] + '&api_key=' + api.key)
                     .success(function(data){
                         $scope.actors=data.results;
                         $.each(data.results, function(i,j){
@@ -62,37 +63,49 @@ angular.module('miAp', ['ngRoute'])
                         });
                     });   
         });
+    $scope.actorClick = function(id) {
+        parametros['actorId']=id;
+    };
+    $scope.movieClick = function(id) {
+        parametros['movieId']=id;
+    };
 })
-.controller("ActorController", function($scope, $http, api) {
+.controller("ActorController", function($scope, $http, api, parametros) {
     $http.get('http://api.themoviedb.org/3/configuration?api_key=' + api.key)
         .success(function(data){
             $scope.config=data;
-                $http.get('http://api.themoviedb.org/3/person/6885?api_key=' + api.key)
+                $http.get('http://api.themoviedb.org/3/person/' + parametros['actorId'] + '?api_key=' + api.key)
                     .success(function(data){
                         $scope.actor=data;
                     });
-                $http.get('http://api.themoviedb.org/3/person/6885/movie_credits?api_key=' + api.key)
+                $http.get('http://api.themoviedb.org/3/person/' + parametros['actorId'] + '/movie_credits?api_key=' + api.key)
                     .success(function(data){
                         $scope.movies=data.cast;
                     });   
         });
+    $scope.movieClick = function(id) {
+        parametros['movieId']=id;
+    };
 })
-.controller("MovieController", function($scope, $http, api) {
+.controller("MovieController", function($scope, $http, api, parametros) {
     $http.get('http://api.themoviedb.org/3/configuration?api_key=' + api.key)
         .success(function(data){
             $scope.config=data;
-                $http.get('http://api.themoviedb.org/3/movie/194?api_key=' + api.key)
+                $http.get('http://api.themoviedb.org/3/movie/' + parametros['movieId'] + '?api_key=' + api.key)
                     .success(function(data){
                         $scope.movie=data;
                     });
-                $http.get('http://api.themoviedb.org/3/movie/194/images?api_key=' + api.key)
+                $http.get('http://api.themoviedb.org/3/movie/' + parametros['movieId'] + '/images?api_key=' + api.key)
                     .success(function(data){
                         $scope.images=data.backdrops;
                     });   
-                $http.get('http://api.themoviedb.org/3/movie/194/credits?api_key=' + api.key)
+                $http.get('http://api.themoviedb.org/3/movie/' + parametros['movieId'] + '/credits?api_key=' + api.key)
                     .success(function(data){
                         $scope.casts=data.cast;
                     });   
         });
+    $scope.actorClick = function(id) {
+        parametros['actorId']=id;
+    };
 })
 ;

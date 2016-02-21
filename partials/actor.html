@@ -27,12 +27,12 @@
             <table class="table table-hover">
                 <tr ng-repeat="movie in movies | orderBy: '-release_date'">
                     <td>
-                        <a href="#/movie">
+                        <a ng-click="movieClick( movie.id )" href="#/movie">
                             <img src="{{ config.images.base_url }}/{{ config.images.logo_sizes.1 }}/{{ movie.poster_path }}"> 
                         </a>
                     </td>
                     <td>
-                        <strong><a href="#/movie">{{ movie.title }}</a></strong><br />
+                        <strong><a ng-click="movieClick( movie.id )" href="#/movie">{{ movie.title }}</a></strong><br />
                         Character: {{ movie.character }}<br />
                         Date: {{ movie.release_date }}
                         <!--<span>

@@ -57,12 +57,12 @@
                         <table class="table table-hover">
                             <tr ng-repeat="cast in casts">
                                 <td>
-                                    <a href="#/actor">
+                                    <a ng-click="actorClick( cast.id )" href="#/actor">
                                         <img class="img-circle" src="{{ config.images.base_url }}/{{ config.images.profile_sizes.0 }}/{{ cast.profile_path }}">
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="#/actor">
+                                    <a ng-click="actorClick( cast.id )" href="#/actor">
                                         {{ cast.name }}
                                     </a>
                                     <br />

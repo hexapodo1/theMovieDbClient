@@ -74,7 +74,7 @@
                             <a href="#page-top"></a>
                         </li>
                         <li class="active">
-                            <a class="page-scroll" data-value="juan" href="#">
+                            <a class="page-scroll" href="#/">
                                 Home
                             </a>
                         </li>
@@ -163,8 +163,8 @@
             
             $(document).ready(function(){
 
-                $("#bs-example-navbar-collapse-1 a").click(function(event){
-                    event.preventDefault();
+                /*$("#bs-example-navbar-collapse-1 a").click(function(event){
+                    //event.preventDefault();
                     var opcion = $(this).data('value');
                     var parametros = $(this).data('parametros');
                     $(this).parent().parent().children().removeClass('active');
@@ -174,7 +174,7 @@
                         $(this).parent().parent().children().children().addClass('submenuok');
                         $(this).removeClass('submenuok');
                     }
-                });
+                });*/
                 
                 // Closes the Responsive Menu on Menu Item Click
                 $('.navbar-collapse ul li a').click(function() {
