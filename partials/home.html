@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
+            <input type="text" class="form-control" placeholder="Search for an actor...">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button">
                     Go!
@@ -16,23 +16,30 @@
 </div>
 <div class="row">
     <table class="table table-hover">
-        <tr>
+        <tr ng-repeat="actor in actors">
             <td>
-                <a href="#/actor">image</a>
+                <a href="#/actor">
+                    <img class="img-circle" src="{{ config.images.base_url }}/{{ config.images.profile_sizes.0 }}/{{ actor.profile_path }}">
+                </a>
             </td>
             <td>
-                <a href="#/actor">name</a><br />
-                birday<br />
-                place<br />
+                <a href="#/actor">{{ actor.name }}</a><br />
+                <strong>Birthday:</strong> {{ actor.detail.birthday }}<br />
+                <strong>Place of birth:</strong> {{ actor.detail.place_of_birth }}<br />
+                <strong>Popularity:</strong> {{ actor.detail.popularity | number : 1 }}<br />
             </td>
             <td>
-                Description<br />
-                ....<br />
-                ....<br />
-                ....
+                {{ actor.detail.biography | limitTo : 250 }} . . .
             </td>
             <td>
-                movies list
+                <strong>Movie list:</strong>
+                <ul class="defaultList" ng-repeat="movie in actor.known_for">
+                    <li>
+                        <a href="#/movie">
+                            {{ movie.title }}
+                        </a>
+                    </li>
+                </ul>
             </td>
         </tr>
     </table>

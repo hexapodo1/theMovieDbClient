@@ -1,0 +1,30 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 18/02/2016, 09:24:15 PM
+    Author     : juan
+*/
+.movies {
+    overflow: auto;
+    max-height: 20em;
+}
+.biography, .overview {
+    text-align: justify;
+    padding: 5px;
+    overflow: auto;
+    max-height: 10em;
+}
+.defaultList {
+    margin: 0
+}
+.borderCarousel {
+    border: #00ff00 1px solid;
+    border-radius: 10px;
+}
+.panel-cast {
+    max-height: 23em;
+    overflow: auto;
+}

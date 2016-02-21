@@ -1,86 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <title>The Movie Db Client</title>
-        <!-- Css imports -->
-        <link href="assets/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-        <link href="assets/jstree/themes/default/style.min.css" rel="stylesheet">
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-        <link href="assets/gritter/css/jquery.gritter.css" rel="stylesheet">
-        <link href="assets/css/agency.css" rel="stylesheet">
+        <title>The Movie Db Client</title>
+            <!-- Css imports -->
+            <link href="assets/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+            <link href="assets/jstree/themes/default/style.min.css" rel="stylesheet">
+            <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+            <link href="assets/gritter/css/jquery.gritter.css" rel="stylesheet">
+            <link href="assets/css/agency.css" rel="stylesheet">
+            <link href="app/styles.css" rel="stylesheet">
 
-        <!-- Custom Fonts -->
-        <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-        <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+            <!-- Custom Fonts -->
+            <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+            <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+            <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+            <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+            <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
-        <!-- js imports -->
-        <script src="assets/js/jquery.js"></script>
-        <script src="assets/jstree/jstree.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/jquery-ui/jquery-ui.min.js"></script>
-        <script src="assets/gritter/js/jquery.gritter.js"></script>
-        <script src="assets/jquery-validation/jquery.validate.js"></script>
-        <script src="assets/jquery-validation/additional-methods.js"></script>
-        <script src="assets/jquery-validation/messages_es.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular-route.min.js"></script>
-        <script>
-            angular.module('miAp', ['ngRoute'])
+            <!-- js imports -->
+            <script src="assets/js/jquery.js"></script>
+            <script src="assets/jstree/jstree.min.js"></script>
+            <script src="assets/js/bootstrap.min.js"></script>
+            <script src="assets/jquery-ui/jquery-ui.min.js"></script>
+            <script src="assets/gritter/js/jquery.gritter.js"></script>
+            <script src="assets/jquery-validation/jquery.validate.js"></script>
+            <script src="assets/jquery-validation/additional-methods.js"></script>
+            <script src="assets/jquery-validation/messages_es.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular-route.min.js"></script>
+            <script src="app/main.js"></script>
 
-            .config(function($routeProvider) {
-                $routeProvider
-                    .when('/', {
-                      templateUrl: 'partials/home.html'
-                    })
-                    .when('/actor', {
-                      //controller: 'ActorController',
-                      templateUrl: 'partials/actor.html'
-                    })
-                    .when('/movie', {
-                      controller: 'MovieController',
-                      templateUrl: 'partials/movie.html'
-                    })
-                    .when('/ajax', {
-                      controller: 'ajax',
-                      templateUrl: 'partials/test.html'
-                    })
-                    .otherwise({
-                      redirectTo: '/'
-                    });
-            })
-            .controller("ajax", function($scope, $http) {
-                $scope.getData=function(){
-                    $http.get('http://api.themoviedb.org/3/configuration?api_key=977cda5d9bfac0a6b0252ef0272785b6')
-                            .success(function(data){
-                                $scope.data=data;
-                            });
-                };
-            })
-                
-            ;
-        </script>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Shortcut Icon -->
-    <link rel="icon" type="image/png" href="favicon.png" />
-</head>
+        <!-- Shortcut Icon -->
+        <link rel="icon" type="image/png" href="favicon.png" />
+    </head>
 
     <body ng-app="miAp" id="page-top" class="index">
 
@@ -160,7 +127,8 @@
         </footer>
 
         <!-- Custom Theme JavaScript -->
-        <script>
+        <script type="text/javascript">
+            // create notification messaje
             function crearMensaje(tipo, contenido){
                 switch (parseInt(tipo)){
                     case 0:

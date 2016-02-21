@@ -1,59 +1,112 @@
 <div class="row">
     <div class="col-sm-12">
         <h3>
-            Movie name
+            {{ movie.title }}
         </h3>
     </div>
-    
 </div>
 <div class="row">
+    <div class="col-sm-3">
+        <img class="img-responsive" src="{{ config.images.base_url }}/{{ config.images.backdrop_sizes.0 }}/{{ movie.poster_path }}"> <br />
+        <strong>Original title: </strong>
+        <ul class="defaultList">
+            <li>{{ movie.original_title }}</li>
+        </ul>
+        <strong>Generes : </strong>
+        <ul class="defaultList" ng-repeat="genre in movie.genres">
+            <li>{{ genre.name }}</li>
+        </ul>
+        <strong>Spoken languages: </strong>
+        <ul class="defaultList" ng-repeat="language in movie.spoken_languages">
+            <li>{{ language.name }} ({{ language.iso_639_1 }})</li>
+        </ul>
+        <strong>Production companies: </strong>
+        <ul class="defaultList" ng-repeat="company in movie.production_companies">
+            <li>{{ company.name }}</li>
+        </ul>
+        <strong>Production countries: </strong>
+        <ul class="defaultList" ng-repeat="countrie in movie.production_countries">
+            <li>{{ countrie.name }}</li>
+        </ul>
+        <strong>Release date: </strong>
+        <ul class="defaultList">
+            <li>{{ movie.release_date }}</li>
+        </ul>
+        <strong>Homepage: </strong>
+        <ul class="defaultList">
+            <li><a href="{{ movie.homepage }}" target="_blank">External homepage</a></li>
+        </ul>
+    </div>
     <div class="col-sm-9">
         <h4>
             Overview
         </h4>
-        <span>
-            bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla 
-            bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla
-            bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla
-            bla bla blabla bla blabla bla bbla bla blabla bla blabla bla blabla bla blabla bla
-            bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla.
-            bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla 
-            bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla
-            bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla
-            bla bla blabla bla blabla bla bbla bla blabla bla blabla bla blabla bla blabla bla
-            bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla.
-        </span>
+        <div  class="overview">
+            {{ movie.overview }}
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="panel panel-default panel-cast">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Cast
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <tr ng-repeat="cast in casts">
+                                <td>
+                                    <a href="#/actor">
+                                        <img class="img-circle" src="{{ config.images.base_url }}/{{ config.images.profile_sizes.0 }}/{{ cast.profile_path }}">
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#/actor">
+                                        {{ cast.name }}
+                                    </a>
+                                    <br />
+                                    as {{ cast.character }}
+                                </td>
+                            </tr>
+                        </table>
+                        {{ cast.name }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Images
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner" role="listbox">
+                                <div ng-class="{ 'active': $index==0}" class="item" ng-repeat="image in images">
+                                    <img class="img-responsive" src="{{ config.images.base_url }}/{{ config.images.backdrop_sizes.1 }}/{{ image.file_path }}" alt="...">
+                                </div>
+                            </div>
+                            
+                            <!-- Controls
+                            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="javascript:void(0);" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-sm-3">
-        image
-    </div>
+    
 </div>
 <div class="row">
     <br />
-</div>
-<div class="row">
-    <div class="col-sm-9">
-        <table class="table table-hover">
-            <tr>
-                <td>
-                    2008
-                </td>
-                <td>
-                    <a href="#/actor">Image</a>
-                </td>
-                <td>
-                    <strong><a href="#/actor">Movie title</a></strong><br />
-                    <span>
-                        bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla.
-                        bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla .....
-                    </span>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="col-sm-3">
-        <strong>Name actor: </strong>Juan Leon <br />
-        <strong>Birthday actor: </strong>The 23th, October 1978<br />
-        <strong>Place of birth: </strong>Popayan, Colombia<br />
-    </div>
 </div>

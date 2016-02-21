@@ -1,59 +1,47 @@
 <div class="row">
     <div class="col-sm-12">
         <h3>
-            Actor name
+            {{ actor.name }}
         </h3>
     </div>
-    
 </div>
 <div class="row">
+    <div class="col-sm-3">
+        <img class="img-responsive" src="{{ config.images.base_url }}/{{ config.images.profile_sizes.2 }}/{{ actor.profile_path }}"> <br />
+        <strong>Actor name: </strong>{{ actor.name }}<br />
+        <strong>Birthday: </strong>{{ actor.birthday }}<br />
+        <strong>Place of birth: </strong>{{ actor.place_of_birth }}<br />
+    </div>
     <div class="col-sm-9">
         <h4>
-            Bibliography
+            Biography
         </h4>
-        <span>
-            bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla 
-            bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla
-            bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla
-            bla bla blabla bla blabla bla bbla bla blabla bla blabla bla blabla bla blabla bla
-            bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla.
-            bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla 
-            bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla
-            bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla
-            bla bla blabla bla blabla bla bbla bla blabla bla blabla bla blabla bla blabla bla
-            bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla.
-        </span>
-    </div>
-    <div class="col-sm-3">
-        image
-    </div>
-</div>
-<div class="row">
-    <br />
-</div>
-<div class="row">
-    <div class="col-sm-9">
-        <table class="table table-hover">
-            <tr>
-                <td>
-                    2008
-                </td>
-                <td>
-                    <a href="#/actor">Image</a>
-                </td>
-                <td>
-                    <strong><a href="#/actor">Movie title</a></strong><br />
-                    <span>
-                        bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla.
-                        bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla .....
-                    </span>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="col-sm-3">
-        <strong>Name actor: </strong>Juan Leon <br />
-        <strong>Birthday actor: </strong>The 23th, October 1978<br />
-        <strong>Place of birth: </strong>Popayan, Colombia<br />
+        <div class="biography" >
+            {{ actor.biography }}
+        </div>
+        <br />
+        <h4>
+            Movies
+        </h4>
+        <div class="movies">
+            <table class="table table-hover">
+                <tr ng-repeat="movie in movies | orderBy: '-release_date'">
+                    <td>
+                        <a href="#/movie">
+                            <img src="{{ config.images.base_url }}/{{ config.images.logo_sizes.1 }}/{{ movie.poster_path }}"> 
+                        </a>
+                    </td>
+                    <td>
+                        <strong><a href="#/movie">{{ movie.title }}</a></strong><br />
+                        Character: {{ movie.character }}<br />
+                        Date: {{ movie.release_date }}
+                        <!--<span>
+                            bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla.
+                            bla bla blabla bla blabla bla blabla bla blabla bla blabla bla blabla bla .....
+                        </span>-->
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
