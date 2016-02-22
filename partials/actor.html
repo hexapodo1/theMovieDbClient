@@ -7,7 +7,12 @@
 </div>
 <div class="row">
     <div class="col-sm-3">
-        <img class="img-responsive" src="{{ config.images.base_url }}/{{ config.images.profile_sizes.2 }}/{{ actor.profile_path }}"> <br />
+        <div ng-if="actor.profile_path!==null" >
+            <img class="img-responsive" src="{{ config.images.base_url }}/{{ config.images.profile_sizes.2 }}/{{ actor.profile_path }}"> <br />
+        </div>
+        <div ng-if="actor.profile_path===null" >
+            <img class="img-responsive" src="{{ void_profile_path.2 }}"><br />
+        </div>
         <strong>Actor name: </strong>{{ actor.name }}<br />
         <strong>Birthday: </strong>{{ actor.birthday }}<br />
         <strong>Place of birth: </strong>{{ actor.place_of_birth }}<br />
@@ -28,7 +33,12 @@
                 <tr ng-repeat="movie in movies | orderBy: '-release_date'">
                     <td>
                         <a ng-click="movieClick( movie.id )" href="#/movie">
-                            <img src="{{ config.images.base_url }}/{{ config.images.logo_sizes.1 }}/{{ movie.poster_path }}"> 
+                            <div ng-if="movie.poster_path!==null">
+                                <img src="{{ config.images.base_url }}/{{ config.images.poster_sizes.0 }}/{{ movie.poster_path }}"> 
+                            </div>
+                            <div ng-if="movie.poster_path===null">
+                                <img src="{{ void_poster_path.0 }}"> 
+                            </div>
                         </a>
                     </td>
                     <td>

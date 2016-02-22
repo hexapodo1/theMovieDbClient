@@ -25,6 +25,6 @@ and open the template in the editor.
     border-radius: 10px;
 }
 .panel-cast {
-    max-height: 23em;
+    max-height: 20em;
     overflow: auto;
 }

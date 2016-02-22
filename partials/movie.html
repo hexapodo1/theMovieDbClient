@@ -7,7 +7,12 @@
 </div>
 <div class="row">
     <div class="col-sm-3">
-        <img class="img-responsive" src="{{ config.images.base_url }}/{{ config.images.backdrop_sizes.0 }}/{{ movie.poster_path }}"> <br />
+        <div ng-if="movie.poster_path!==null" >
+            <img class="img-responsive" src="{{ config.images.base_url }}/{{ config.images.poster_sizes.3 }}/{{ movie.poster_path }}"> <br />
+        </div>
+        <div ng-if="movie.poster_path===null" >
+            <img class="img-responsive" src="{{ void_poster_path.3 }}"> <br />
+        </div>
         <strong>Original title: </strong>
         <ul class="defaultList">
             <li>{{ movie.original_title }}</li>
@@ -47,18 +52,23 @@
         <br />
         <div class="row">
             <div class="col-sm-5">
-                <div class="panel panel-default panel-cast">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             Cast
                         </h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body panel-cast">
                         <table class="table table-hover">
                             <tr ng-repeat="cast in casts">
                                 <td>
                                     <a ng-click="actorClick( cast.id )" href="#/actor">
-                                        <img class="img-circle" src="{{ config.images.base_url }}/{{ config.images.profile_sizes.0 }}/{{ cast.profile_path }}">
+                                        <div ng-if="cast.profile_path!==null" >
+                                            <img class="img-circle" src="{{ config.images.base_url }}/{{ config.images.profile_sizes.0 }}/{{ cast.profile_path }}">
+                                        </div>
+                                        <div ng-if="cast.profile_path===null" >{{ actor.profile_path }}
+                                            <img class="img-circle" src="{{ void_profile_path.0 }}">
+                                        </div>
                                     </a>
                                 </td>
                                 <td>
@@ -70,7 +80,6 @@
                                 </td>
                             </tr>
                         </table>
-                        {{ cast.name }}
                     </div>
                 </div>
             </div>
@@ -110,3 +119,11 @@
 <div class="row">
     <br />
 </div>
+<script>
+    $(document).ready(function(){
+        $('.carousel').carousel({
+            interval: 2000,
+        });
+        //alert('jaja');
+    });
+</script>

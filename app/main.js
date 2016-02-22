@@ -36,9 +36,12 @@ angular.module('miAp', ['ngRoute'])
     return { 
         actorId: 0,
         movieId: 0,
+        void_profile_path: ['assets/img/nopr45.png', '', 'assets/img/nopr632.png'],
+        void_poster_path: ['assets/img/nopo92.png', '', '', 'assets/img/nopo342.png' ],
     };
 })
 .controller("HomeController", function($scope, $http, api, parametros) {
+    $scope.void_profile_path = parametros['void_profile_path'];
     $scope.actorClick = function(id) {
         parametros['actorId']=id;
     };
@@ -73,6 +76,8 @@ angular.module('miAp', ['ngRoute'])
     };
 })
 .controller("ActorController", function($scope, $http, api, parametros) {
+    $scope.void_profile_path = parametros['void_profile_path'];
+    $scope.void_poster_path = parametros['void_poster_path'];
     $http.get('http://api.themoviedb.org/3/configuration?api_key=' + api.key)
         .success(function(data){
             $scope.config=data;
@@ -90,6 +95,8 @@ angular.module('miAp', ['ngRoute'])
     };
 })
 .controller("MovieController", function($scope, $http, api, parametros) {
+    $scope.void_profile_path = parametros['void_profile_path'];
+    $scope.void_poster_path = parametros['void_poster_path'];
     $http.get('http://api.themoviedb.org/3/configuration?api_key=' + api.key)
         .success(function(data){
             $scope.config=data;

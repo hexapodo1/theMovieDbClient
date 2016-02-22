@@ -15,7 +15,12 @@
             <tr ng-repeat="actor in actors">
                 <td>
                     <a ng-click="actorClick( actor.id )" href="#/actor">
-                        <img class="img-circle" src="{{ config.images.base_url }}/{{ config.images.profile_sizes.0 }}/{{ actor.profile_path }}">
+                        <div ng-if="actor.profile_path!==null" >
+                            <img class="img-circle" src="{{ config.images.base_url }}/{{ config.images.profile_sizes.0 }}/{{ actor.profile_path }}">
+                        </div>
+                        <div ng-if="actor.profile_path===null" >
+                            <img class="img-circle" src="{{ void_profile_path.0 }}">
+                        </div>
                     </a>
                 </td>
                 <td>
