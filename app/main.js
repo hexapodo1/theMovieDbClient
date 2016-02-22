@@ -34,40 +34,34 @@ angular.module('miAp', ['ngRoute'])
 })
 .factory('parametros', function() {
     return { 
-        actorId: 6193,
-        movieId: 194,
-        search: 'theron'
-    };
-})
-.controller("ajax", function($scope, $http) {
-    $scope.getData=function(){
-        $http.get('http://api.themoviedb.org/3/configuration?api_key=977cda5d9bfac0a6b0252ef0272785b6')
-                .success(function(data){
-                    Dato=data;
-                    //$scope.dato=
-                });
+        actorId: 0,
+        movieId: 0,
     };
 })
 .controller("HomeController", function($scope, $http, api, parametros) {
-    $http.get('http://api.themoviedb.org/3/configuration?api_key=' + api.key)
-        .success(function(data){
-            $scope.config=data;
-                $http.get('http://api.themoviedb.org/3/search/person?query=' + parametros['search'] + '&api_key=' + api.key)
-                    .success(function(data){
-                        $scope.actors=data.results;
-                        $.each(data.results, function(i,j){
-                            $http.get('http://api.themoviedb.org/3/person/' + data.results[i].id + '?api_key=' + api.key)
-                                .success(function(data2){
-                                    $scope.actors[i].detail=data2;
-                                });
-                        });
-                    });   
-        });
     $scope.actorClick = function(id) {
         parametros['actorId']=id;
     };
     $scope.movieClick = function(id) {
         parametros['movieId']=id;
+    };
+    $scope.searchAction = function (){
+        if ($scope.search.length >= 3) {
+            $http.get('http://api.themoviedb.org/3/configuration?api_key=' + api.key)
+            .success(function(data){
+                $scope.config=data;
+                    $http.get('http://api.themoviedb.org/3/search/person?query=' + $scope.search + '&api_key=' + api.key)
+                        .success(function(data){
+                            $scope.actors=data.results;
+                            $.each(data.results, function(i,j){
+                                $http.get('http://api.themoviedb.org/3/person/' + data.results[i].id + '?api_key=' + api.key)
+                                    .success(function(data2){
+                                        $scope.actors[i].detail=data2;
+                                    });
+                            });
+                        });   
+            });
+        }
     };
 })
 .controller("ActorController", function($scope, $http, api, parametros) {

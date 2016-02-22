@@ -1,13 +1,8 @@
 <br />
 <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for an actor...">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                    Go!
-                </button>
-            </span>
+        <div class="input-lg">
+            <input ng-model="search"  type="text" class="form-control" placeholder="Search for an actor..." ng-keyup="searchAction()">
         </div>
     </div>
 </div>
