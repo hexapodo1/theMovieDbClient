@@ -53,6 +53,12 @@ angular.module('miAp', ['ngRoute'])
                     $http.get('http://api.themoviedb.org/3/search/person?query=' + $scope.search + '&api_key=' + api.key)
                         .success(function(data){
                             $scope.actors=data.results;
+                            if (data.total_results===0) {
+                                $scope.void = true;
+                            } else {
+                                $scope.void = false;
+                            }
+                            
                             $.each(data.results, function(i,j){
                                 $http.get('http://api.themoviedb.org/3/person/' + data.results[i].id + '?api_key=' + api.key)
                                     .success(function(data2){
@@ -61,6 +67,8 @@ angular.module('miAp', ['ngRoute'])
                             });
                         });   
             });
+        } else {
+            $scope.config = false;
         }
     };
 })

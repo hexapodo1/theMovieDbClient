@@ -11,7 +11,7 @@
 </div>
 <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
-        <table class="table table-hover">
+        <table class="table table-hover" ng-show="config">
             <tr ng-repeat="actor in actors">
                 <td>
                     <a ng-click="actorClick( actor.id )" href="#/actor">
@@ -39,5 +39,11 @@
                 </td>
             </tr>
         </table>
+        <div ng-hide="config" class="alert alert-warning" role="alert">
+            For effective searching Enter at least 3 letters of the name of the actor.
+        </div>
+        <div ng-show="void" class="alert alert-warning" role="alert">
+            no matches, try again!
+        </div>
     </div>
 </div>
