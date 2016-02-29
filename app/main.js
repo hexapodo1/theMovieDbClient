@@ -29,8 +29,8 @@ angular.module('miAp', ['ngRoute'])
             redirectTo: '/'
         });
 })
-.factory('api', function() {
-    return { key: '977cda5d9bfac0a6b0252ef0272785b6' };
+.factory('config', function($http) {
+    return { baseUrl: 'http://test.kishron.com.co:8086/index.php/' };
 })
 .factory('parametros', function() {
     return { 
@@ -40,7 +40,7 @@ angular.module('miAp', ['ngRoute'])
         void_poster_path: ['assets/img/nopo92.png', '', '', 'assets/img/nopo342.png' ],
     };
 })
-.controller("HomeController", function($scope, $http, api, parametros) {
+.controller("HomeController", function($scope, $http, config, parametros) {
     $scope.void_profile_path = parametros['void_profile_path'];
     $scope.actorClick = function(id) {
         parametros['actorId']=id;
@@ -50,69 +50,61 @@ angular.module('miAp', ['ngRoute'])
     };
     $scope.searchAction = function (){
         if ($scope.search.length >= 3) {
-            $http.get('http://api.themoviedb.org/3/configuration?api_key=' + api.key)
-            .success(function(data){
-                $scope.config=data;
-                    $http.get('http://api.themoviedb.org/3/search/person?query=' + $scope.search + '&api_key=' + api.key)
-                        .success(function(data){
-                            $scope.actors=data.results;
-                            if (data.total_results===0) {
-                                $scope.void = true;
-                            } else {
-                                $scope.void = false;
-                            }
-                            
-                            $.each(data.results, function(i,j){
-                                $http.get('http://api.themoviedb.org/3/person/' + data.results[i].id + '?api_key=' + api.key)
-                                    .success(function(data2){
-                                        $scope.actors[i].detail=data2;
-                                    });
+            $scope.config = globalConfig;
+            $http.get(config.baseUrl + 'search/person?query=' + $scope.search)
+                .success(function(data){
+                    $scope.actors=data.results;
+                    if (data.total_results===0) {
+                        $scope.void = true;
+                    } else {
+                        $scope.void = false;
+                    }
+                    // disabled by performance
+                    /*$.each(data.results, function(i,j){
+                        $http.get(config.baseUrl + 'detail/person/' + data.results[i].id )
+                            .success(function(data2){
+                                $scope.actors[i].detail=data2;
                             });
-                        });   
-            });
+                    });*/
+                });   
         } else {
             $scope.config = false;
         }
     };
 })
-.controller("ActorController", function($scope, $http, api, parametros) {
+.controller("ActorController", function($scope, $http, config, parametros) {
     $scope.void_profile_path = parametros['void_profile_path'];
     $scope.void_poster_path = parametros['void_poster_path'];
-    $http.get('http://api.themoviedb.org/3/configuration?api_key=' + api.key)
+    
+    $scope.config = globalConfig;
+    $http.get(config.baseUrl + 'detail/person/' + parametros['actorId'])
         .success(function(data){
-            $scope.config=data;
-                $http.get('http://api.themoviedb.org/3/person/' + parametros['actorId'] + '?api_key=' + api.key)
-                    .success(function(data){
-                        $scope.actor=data;
-                    });
-                $http.get('http://api.themoviedb.org/3/person/' + parametros['actorId'] + '/movie_credits?api_key=' + api.key)
-                    .success(function(data){
-                        $scope.movies=data.cast;
-                    });   
+            $scope.actor=data;
         });
+    $http.get(config.baseUrl + 'movie/credits/person/' + parametros['actorId'])
+        .success(function(data){
+            $scope.movies=data.cast;
+        });   
     $scope.movieClick = function(id) {
         parametros['movieId']=id;
     };
 })
-.controller("MovieController", function($scope, $http, api, parametros) {
+.controller("MovieController", function($scope, $http, config, parametros) {
     $scope.void_profile_path = parametros['void_profile_path'];
     $scope.void_poster_path = parametros['void_poster_path'];
-    $http.get('http://api.themoviedb.org/3/configuration?api_key=' + api.key)
+    $scope.config=globalConfig;
+    $http.get(config.baseUrl + 'detail/movie/' + parametros['movieId'])
         .success(function(data){
-            $scope.config=data;
-                $http.get('http://api.themoviedb.org/3/movie/' + parametros['movieId'] + '?api_key=' + api.key)
-                    .success(function(data){
-                        $scope.movie=data;
-                    });
-                $http.get('http://api.themoviedb.org/3/movie/' + parametros['movieId'] + '/images?api_key=' + api.key)
-                    .success(function(data){
-                        $scope.images=data.backdrops;
-                    });   
-                $http.get('http://api.themoviedb.org/3/movie/' + parametros['movieId'] + '/credits?api_key=' + api.key)
-                    .success(function(data){
-                        $scope.casts=data.cast;
-                    });   
+            $scope.movie=data;
         });
+    $http.get(config.baseUrl + 'images/movie/' + parametros['movieId'] )
+        .success(function(data){
+            $scope.images=data.backdrops;
+        });   
+    $http.get(config.baseUrl + 'credits/movie/' + parametros['movieId'] )
+        .success(function(data){
+            $scope.casts=data.cast;
+        });   
     $scope.actorClick = function(id) {
         parametros['actorId']=id;
     };
